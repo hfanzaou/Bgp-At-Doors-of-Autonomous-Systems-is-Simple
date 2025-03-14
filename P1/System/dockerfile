@@ -1,0 +1,21 @@
+# Use Ubuntu as the base image
+FROM ubuntu:latest
+
+# Update package list and install necessary tools and FRRouting
+RUN apt-get update && apt-get install -y \
+    frr \
+    busybox \
+    net-tools \
+    iproute2 \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable and configure BGPD, OSPFD, and IS-IS services
+RUN echo "zebra=yes\nbgpd=yes\nospfd=yes\nisisd=yes" > /etc/frr/daemons
+
+# Expose ports for FRRouting protocols (for testing)
+EXPOSE 179 2604 2605 2606
+
+# Set default command to run FRRouting
+CMD ["/usr/lib/frr/frrinit.sh"]
+
