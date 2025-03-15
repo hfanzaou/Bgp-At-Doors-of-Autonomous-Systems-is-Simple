@@ -1,3 +1,1 @@
-FROM alpine:latest
-
-CMD [ "/bin/sh" ]
+FROM busybox:unstable-uclibc

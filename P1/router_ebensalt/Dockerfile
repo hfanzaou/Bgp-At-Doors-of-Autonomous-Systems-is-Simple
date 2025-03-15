@@ -1,11 +1,5 @@
-FROM alpine:latest
+FROM frrouting/frr:v8.4.0
 
-COPY scripts/frr-start.sh /
-
-RUN apk add frr && \
-	sed -i "s/bgpd=no/bgpd=yes/g" /etc/frr/daemons && \
+RUN sed -i "s/bgpd=no/bgpd=yes/g" /etc/frr/daemons && \
 	sed -i "s/ospfd=no/ospfd=yes/g" /etc/frr/daemons && \
-	sed -i "s/isisd=no/isisd=yes/g" /etc/frr/daemons && \
-	chmod +x /frr-start.sh
-
-CMD [ "/frr-start.sh" ]
+	sed -i "s/isisd=no/isisd=yes/g" /etc/frr/daemons
