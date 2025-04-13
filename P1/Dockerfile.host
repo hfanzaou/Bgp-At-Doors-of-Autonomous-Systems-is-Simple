@@ -1,0 +1,4 @@
+# Use a minimal base image with BusyBox (alpine includes busybox)
+FROM alpine:latest
+
+CMD ["sh"]
