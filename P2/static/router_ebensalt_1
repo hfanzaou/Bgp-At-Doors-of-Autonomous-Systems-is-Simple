@@ -1,0 +1,19 @@
+# Using /bin/sh because the BusyBox 'ip' command is minimal
+/bin/sh
+# Create a new Linux bridge named br0
+ip link add br0 type bridge
+# Bring up the bridge interface
+ip link set dev br0 up
+# Assign IP address 10.1.1.1/24 to eth0
+ip addr add 10.1.1.1/24 dev eth0
+# Create a VXLAN interface named vxlan10 with ID 10, using eth0 for traffic,
+# remote peer is 10.1.1.2, local IP is 10.1.1.1, using UDP port 4789
+ip link add name vxlan10 type vxlan id 10 dev eth0 remote 10.1.1.2 local 10.1.1.1 dstport 4789
+# Assign IP address 20.1.1.1/24 to the VXLAN interface
+ip addr add 20.1.1.1/24 dev vxlan10
+# Add eth1 to the bridge br0
+brctl addif br0 eth1
+# Add the VXLAN interface to the bridge br0
+brctl addif br0 vxlan10
+# Bring up the VXLAN interface
+ip link set dev vxlan10 up
