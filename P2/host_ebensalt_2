@@ -1,2 +1,2 @@
-# Assign IP address 30.1.1.2/24 to eth1
-ip addr add 30.1.1.2/24 dev eth1
+# Assign IP address 192.168.0.2/24 to eth1
+ip addr add 192.168.0.2/24 dev eth1
