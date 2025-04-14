@@ -1,5 +1,4 @@
 # Enter vtysh command-line interface for router configuration
-touch /etc/frr/vtysh.conf
 vtysh
 conf t
                                     # configuration
