@@ -1,8 +1,6 @@
 HOST_IMAGE = host_hfanzaou
 ROUTER_IMAGE = routeur_hfanzaou
 
-
-# Build targets
 .PHONY: all build-host build-router clean
 
 all: build-host build-router

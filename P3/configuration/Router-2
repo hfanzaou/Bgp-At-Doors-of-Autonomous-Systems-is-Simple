@@ -11,7 +11,6 @@ brctl addif br0 vxlan10
 # Add physical interface "eth1" to the bridge "br0"
 brctl addif br0 eth1
 
-touch /etc/frr/vtysh.conf
 # Enter vtysh command-line interface for router configuration
 vtysh
 conf t

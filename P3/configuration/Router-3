@@ -12,7 +12,6 @@ brctl addif br0 vxlan10
 brctl addif br0 eth0
 
 # Enter vtysh command-line interface for router configuration
-touch /etc/frr/vtysh.conf
 vtysh
 conf t
                                 # configuration

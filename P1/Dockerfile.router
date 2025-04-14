@@ -1,20 +1,23 @@
 # pulling the latest frrouting image
 FROM frrouting/frr:latest
 
-# Configue services daemons(BGP, OPSF. ISIS)
+# Enable services daemons(BGP, OPSF. ISIS)
 RUN sed -i 's/bgpd=no/bgpd=yes/g' /etc/frr/daemons && \
     sed -i 's/ospfd=no/ospfd=yes/g' /etc/frr/daemons && \
     sed -i 's/isisd=no/isisd=yes/g' /etc/frr/daemons && \
     sed -i 's/zebra=no/zebra=yes/g' /etc/frr/daemons
-
 
 # Copy configuration files for services (IS-IS , BGP, OSPF)
 COPY ./config/ospfd.conf /etc/frr/ospfd.conf
 COPY ./config/isisd.conf /etc/frr/isisd.conf
 COPY ./config/bgpd.conf /etc/frr/bgpd.conf
 
+# Create vtysh.conf to allow vtysh CLI access.
+RUN touch /etc/frr/vtysh.conf
+
 # Set proper permissions for config files
 RUN chown -R frr:frr /etc/frr && \
     chmod 640 /etc/frr/*.conf
 
+# Launch FRR and all enabled daemons 
 ENTRYPOINT ["/usr/lib/frr/docker-start"]

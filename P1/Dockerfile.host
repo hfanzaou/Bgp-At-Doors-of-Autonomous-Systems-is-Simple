@@ -1,4 +1,5 @@
 # Use a minimal base image with BusyBox (alpine includes busybox)
 FROM alpine:latest
 
+# Starting command
 CMD ["sh"]
