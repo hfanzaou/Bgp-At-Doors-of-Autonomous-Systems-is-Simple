@@ -11,9 +11,6 @@ brctl addif br0 vxlan10
 # Add the physical interface eth0 to the bridge 
 brctl addif br0 eth0
 
-# Enter vtysh command-line interface for router configuration
-vtysh
-conf t
                           # configuration
 # Set the hostname of the router and Disable IPv6 forwarding
 hostname routeur_hfanzaou-4
